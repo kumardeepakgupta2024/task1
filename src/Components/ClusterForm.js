@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, MenuItem, Box, Typography, CircularProgress } from '@mui/material';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import { useCreateClusterMutation, useGetCitiesQuery, useGetCountriesQuery, useGetStatesQuery } from '../redux/apiSlice';
 
 const ClusterForm = () => {
@@ -17,10 +17,10 @@ const ClusterForm = () => {
 
     const { data: countriesData, isLoading: countriesLoading, error: countriesError } = useGetCountriesQuery();
     const { data: statesData, isLoading: statesLoading, error: stateError } = useGetStatesQuery(formData.country_id, { skip: !formData.country_id });
-    const { data: citiesData, isLoading: citiesLoading, error:citiesError } = useGetCitiesQuery(formData.state_id, { skip: !formData.state_id });
+    const { data: citiesData, isLoading: citiesLoading, error: citiesError } = useGetCitiesQuery(formData.state_id, { skip: !formData.state_id });
     const [createCluster, { isLoading: isCreating, error: createError }] = useCreateClusterMutation();
 
-    const navigate = useNavigate();  
+    const navigate = useNavigate();
     useEffect(() => {
         if (countriesError) {
             console.error('Error fetching countries:', countriesError);
@@ -34,19 +34,19 @@ const ClusterForm = () => {
         if (statesData) {
             console.error('states:', statesData);
         }
-        if (stateError ) {
-            console.error('Error fetching cities:', stateError );
+        if (stateError) {
+            console.error('Error fetching cities:', stateError);
         }
-    }, [statesData, stateError ]);
+    }, [statesData, stateError]);
 
     useEffect(() => {
         if (citiesData) {
             console.error('city:', citiesData);
         }
-        if (createError ) {
-            console.error('Error fetching cities:', createError );
+        if (createError) {
+            console.error('Error fetching cities:', createError);
         }
-    }, [citiesData, createError ]);
+    }, [citiesData, createError]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -56,7 +56,7 @@ const ClusterForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await createCluster(formData).unwrap(); // Trigger the mutation
+            await createCluster(formData).unwrap();
             alert('Cluster created successfully!');
             setFormData({
                 name: '',
@@ -68,7 +68,7 @@ const ClusterForm = () => {
                 latitude: '0',
                 longitude: '0',
             });
-            navigate('/create');  // Redirect to the /create page
+            navigate('/create');
         } catch (error) {
             console.error('Error creating cluster:', error);
             alert('Failed to create cluster.');
@@ -174,7 +174,7 @@ const ClusterForm = () => {
                 required
             />
 
-             <Button type="submit" variant="contained" color="primary" fullWidth disabled={isCreating} sx={{ mt: 2 }}>
+            <Button type="submit" variant="contained" color="primary" fullWidth disabled={isCreating} sx={{ mt: 2 }}>
                 {isCreating ? 'Submitting...' : 'Submit'}
             </Button>
 

@@ -47,17 +47,17 @@ const ClusterListPage = () => {
   };
 
   const applyFilters = () => {
-    setPage(1); 
+    setPage(1);
   };
 
   const handleMenuClick = (event, cluster) => {
     setAnchorEl(event.currentTarget);
-    setSelectedCluster(cluster); // Set the selected cluster for actions
+    setSelectedCluster(cluster);
   };
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-    setSelectedCluster(null);  // Clear selectedCluster on close
+    setSelectedCluster(null);
   };
 
   const handleEdit = () => {
@@ -104,7 +104,7 @@ const ClusterListPage = () => {
         await softDeleteCluster({ id: selectedCluster.id }).unwrap();
         console.log('Cluster deleted successfully');
         handleMenuClose();
-        refetch();  // Refetch the clusters to update the UI
+        refetch();
       } catch (error) {
         console.error('Error deleting cluster:', error);
       }
