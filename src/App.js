@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import ClusterForm from './Components/ClusterForm';
-
-import { Container, Box, AppBar, Toolbar, Typography } from '@mui/material';
 import ClusterListPage from './Components/ClusterListPage';
 
+import { Container, AppBar, Toolbar, Typography } from '@mui/material';
 
 function App() {
   return (
@@ -22,9 +21,8 @@ function App() {
 
         <Container sx={{ mt: 4 }}>
           <Routes>
-
-            <Route path="/" element={<ClusterForm />} />      {/* Default page: table */}
-            <Route path="/create" element={<ClusterListPage />} />  {/* Route for creating clusters */}
+            <Route path="/create" element={<ClusterListPage />} />  
+            <Route path="/" element={<ClusterForm />} />  
           </Routes>
         </Container>
       </Router>

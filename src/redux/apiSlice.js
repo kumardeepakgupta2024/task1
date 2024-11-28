@@ -39,7 +39,7 @@ export const clusterApi = createApi({
     softDeleteCluster: builder.mutation({
       query: ({ id }) => ({
         url: `http://143.110.178.49/ev-charging-backend/api/clusters/soft-delete/${id}`,
-        method: 'DELETE',
+        method: 'Post',
       }),
     }),
 
